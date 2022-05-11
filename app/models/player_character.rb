@@ -1,0 +1,3 @@
+class PlayerCharacter < ApplicationRecord
+
+end
