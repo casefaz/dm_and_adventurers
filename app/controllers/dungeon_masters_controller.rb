@@ -3,4 +3,8 @@ class DungeonMastersController < ApplicationController
             # binding.pry
         @dm = DungeonMaster.all
     end
+
+    def show
+        
+    end
 end
