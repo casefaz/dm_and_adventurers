@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/dungeon_masters/:id', to: 'dungeon_masters#show'
 
   get '/player_characters', to: 'player_characters#index'
+  get '/player_characters/:id', to: 'player_characters#show'
 end
