@@ -1,3 +1,2 @@
 class DungeonMaster < ApplicationRecord
-    
 end
