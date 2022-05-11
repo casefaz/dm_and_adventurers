@@ -13,13 +13,15 @@ RSpec.describe 'dm show page', type: :feature do
         
         visit "/dungeon_masters/#{dm.id}"
 
-        # save_and_open_page
+        save_and_open_page
         expect(page).to have_content(dm.name)
         expect(page).to_not have_content(dm_2.name)
         expect(page).to have_content(dm.id)
-        expect(page).to have_content(dm_3.number_of_players)
-        expect(page).to have_content(dm_4.dm_active)
-        expect(page).to have_content(dm_4.level_range)
+        expect(page).to have_content(dm.number_of_players)
+        expect(page).to have_content(dm.dm_active)
+        expect(page).to have_content(dm.level_range)
+        expect(page).to have_content(dm.created_at)
+        expect(page).to have_content(dm.updated_at)
 
     end
 end
