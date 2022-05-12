@@ -12,7 +12,7 @@ RSpec.describe 'dm index page', type: :feature do
         dm_4 = DungeonMaster.create!(name: 'Lorelai', number_of_players: 9, dm_active: true, level_range: 'low')
         
         visit '/dungeon_masters'
-        save_and_open_page
+        # save_and_open_page
         expect(page).to have_content(dm.name)
         expect(page).to have_content(dm_2.name)
         expect(page).to have_content(dm_3.name)

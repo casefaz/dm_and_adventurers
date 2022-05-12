@@ -5,9 +5,11 @@ RSpec.describe 'adventurer show', type: :feature do
         # As a visitor
         # When I visit '/child_table_name/:id'
         # Then I see the child with that id including the child's attributes:
-        adventurer = PlayerCharacter.create!(player_name: 'karl', character_name: 'Falafel', character_level: 7,character_age: 207, character_class: 'Bard', character_race: 'Dwarf', is_alive: true)
+        kai = DungeonMaster.create!(name: 'Kai', number_of_players: 5, dm_active: false, level_range: 'low')
 
-        adventurer_2 = PlayerCharacter.create!(player_name: 'Beebo', character_name: 'Onion', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
+        adventurer = kai.player_characters.create!(player_name: 'karl', character_name: 'Falafel', character_level: 7,character_age: 207, character_class: 'Bard', character_race: 'Dwarf', is_alive: true)
+
+        adventurer_2 = kai.player_characters.create!(player_name: 'Beebo', character_name: 'Onion', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
 
         visit "/player_characters/#{adventurer.id}"
         # save_and_open_page
