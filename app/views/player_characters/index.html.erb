@@ -2,10 +2,13 @@
 <% @pc.each do |pc| %>
   <h3>Player Name:<%= pc.player_name %></h3>
   <p>ID: <%= pc.id %></p>
-  <p>Character Name: <%= pc.character_name %></p>
-  <p>Character Age: <%= pc.age %></p>
-  <p>Character Level: <%= pc.character_level %></p>
-  <p>Character Alive?: <%= pc.is_alive %></p>
+  <h4>Character Information</h3>
+  <p>Name: <%= pc.character_name %></p>
+  <p>Level: <%= pc.character_level %></p>
+  <p>Age: <%= pc.character_age %></p>
+  <p>Class: <%= pc.character_class %></p>
+  <p>Race: <%= pc.character_race %></p>
+  <p>Alive?: <%= pc.is_alive %></p>
   <p>Created at: <%= pc.created_at %></p>
   <p>Updated at: <%= pc.updated_at %></p>
 <% end %>
