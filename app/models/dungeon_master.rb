@@ -8,4 +8,8 @@ class DungeonMaster < ApplicationRecord
         # binding.pry
         order(created_at: :desc)
     end
+
+    def player_count
+        player_characters.count
+    end
 end
