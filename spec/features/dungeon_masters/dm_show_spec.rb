@@ -49,4 +49,19 @@ RSpec.describe 'dm show page', type: :feature do
             expect(current_path).to eq('/player_characters')
         end
     end
+
+    describe 'user story 10' do
+        # As a visitor
+        # When I visit a parent show page ('/parents/:id')
+        # Then I see a link to take me to that parent's `child_table_name` page ('/parents/:id/child_table_name')
+        it 'can link each dm to their players' do
+            dm = DungeonMaster.create!(name: "Orville", number_of_players: 4, dm_active: true, level_range: 'high')
+
+            visit "/dungeon_masters/#{dm.id}"
+
+            click_link "#{dm.name}'s Adventurers"
+
+            expect(current_path).to eq("/dungeon_masters/#{dm.id}/player_characters")
+        end 
+    end
 end
