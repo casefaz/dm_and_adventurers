@@ -34,9 +34,19 @@ RSpec.describe 'dm show page', type: :feature do
             adventurer3 = lucius.player_characters.create!(player_name: 'Izzy', character_name: 'Hands', character_level: 3,character_age: 25, character_class: 'Bard', character_race: 'Half-Elf', is_alive: 'false')
 
             visit "/dungeon_masters/#{lucius.id}"
-            save_and_open_page
+            # save_and_open_page
             expect(page).to have_content(lucius.name)
             expect(page).to have_content("Number of Players: 3")
+        end
+    end
+
+    describe 'user story 8' do
+        it 'has a link that goes to player_character index' do
+            visit '/player_characters'
+
+            click_link 'Adventurers'
+            # save_and_open_page
+            expect(current_path).to eq('/player_characters')
         end
     end
 end

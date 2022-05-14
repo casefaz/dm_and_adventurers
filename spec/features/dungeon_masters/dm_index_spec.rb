@@ -38,4 +38,14 @@ RSpec.describe 'dm index page', type: :feature do
             expect(page).to have_content(frenchie.created_at)
         end
     end
+
+    describe 'user story 8' do
+        it 'has a link that goes to player_character index' do
+            visit '/player_characters'
+
+            click_link 'Adventurers'
+            # save_and_open_page
+            expect(current_path).to eq('/player_characters')
+        end
+    end
 end
