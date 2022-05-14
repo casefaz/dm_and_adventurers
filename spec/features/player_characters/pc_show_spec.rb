@@ -32,7 +32,8 @@ RSpec.describe 'adventurer show', type: :feature do
         it 'has a link that goes to player_character index' do
             visit '/player_characters'
 
-            click_link '/player_characters'
+            click_link 'Adventurers'
+            # save_and_open_page
             expect(current_path).to eq('/player_characters')
         end
     end
