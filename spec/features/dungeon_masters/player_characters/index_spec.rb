@@ -35,4 +35,24 @@ RSpec.describe 'dungeon master and player_character index' do
             expect(page).to have_content(adventurer1.updated_at)
         end
     end 
+
+    describe 'user story 8' do
+        it 'has a link that goes to player_character index' do
+            visit '/player_characters'
+
+            click_link 'Adventurers'
+            # save_and_open_page
+            expect(current_path).to eq('/player_characters')
+        end
+    end
+
+    describe 'user story 9' do
+        it 'has a link on every page that goes to dungeon_master_index' do
+            visit '/dungeon_masters'
+
+            click_link 'Dungeon Masters'
+            # save_and_open_page
+            expect(current_path).to eq('/dungeon_masters')
+        end
+    end
 end
