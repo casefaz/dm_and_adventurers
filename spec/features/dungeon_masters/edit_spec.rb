@@ -17,9 +17,25 @@ RSpec.describe 'DM edits' do
 
             visit "/dungeon_masters/#{dm.id}"
 
-            click_link "Update Dungeon Master"
+            click_link "Update #{dm.name}"
 
             expect(current_path).to eq("/dungeon_masters/#{dm.id}/edit")
+        end
+
+        it 'can edit the dungeon master' do
+            dm = DungeonMaster.create!(name: 'Fng', number_of_players: 2, dm_active: true, level_range: 'mid')
+
+            visit "/dungeon_masters/#{dm.id}/edit"
+
+            expect(page).to have_content("Fng")
+
+            click_link Edit Fng
+
+            fill_in 'Name', with: 'Fang'
+            click_button 'Update Dungeon Master'
+
+            expect(current_path).to eq('/dungeon_masters')
+            expect(page).to have_content('Fang')
         end
     end
 end
