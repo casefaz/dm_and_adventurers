@@ -27,4 +27,13 @@ RSpec.describe 'adventurer show', type: :feature do
             expect(page).to have_content(adventurer.updated_at)
         end
     end
+
+    describe 'user story 8' do
+        it 'has a link that goes to player_character index' do
+            visit '/player_characters'
+
+            click_link '/player_characters'
+            expect(current_path).to eq('/player_characters')
+        end
+    end
 end
