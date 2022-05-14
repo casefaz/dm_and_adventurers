@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   get '/player_characters', to: 'player_characters#index'
   get '/player_characters/:id', to: 'player_characters#show'
+
+  get '/dungeon_masters/:dungeon_master_id/player_characters', to: 'dungeon_master_player_characters#index'
 end

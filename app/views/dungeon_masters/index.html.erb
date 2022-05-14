@@ -1,5 +1,5 @@
 <h1>Dungeon Masters</h1>
 
 <% @dm.each do |dm| %>
-  <p><%= dm.name %></p>
+  <p><strong><%= dm.name %></strong> <%= dm.created_at %></p>
 <% end %>
