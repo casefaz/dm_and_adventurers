@@ -27,4 +27,8 @@ class DungeonMastersController < ApplicationController
         # binding.pry
         params.permit(:name, :number_of_players, :dm_active, :level_range)
     end
+
+    def edit
+        
+    end
 end
