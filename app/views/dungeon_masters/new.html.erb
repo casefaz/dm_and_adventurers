@@ -1,0 +1,13 @@
+<h1>New Dungeon Master Form</h1>
+
+<%= form_with url: '/dungeon_masters', method: :post, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label 'Number of Players' %>
+  <%= form.text_field :number_of_players %>
+  <%= form.label 'Still Active?' %>
+  <%= form.text_field :dm_active %>
+  <%= form.label 'Level Comfortability Range (low, mid, high)' %>
+  <%= form.text_field :level_range %>
+  <%= form.submit "Create Dungeon Master" %>
+<% end %>

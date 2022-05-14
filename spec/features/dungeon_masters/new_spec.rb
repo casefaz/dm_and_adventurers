@@ -15,8 +15,23 @@ RSpec.describe 'DM Creation' do
         it 'links to the new page from dm index' do
             visit '/dungeon_masters'
 
-            click_link "New Dungeon Master"
+            click_link 'New Dungeon Master'
             expect(current_path).to eq('/dungeon_masters/new')
+            expect(page).to have_content("New Dungeon Master Form")
+        end
+
+        it 'can create a new artist' do
+            visit '/dungeon_masters/new'
+
+            fill_in('Name', with: 'Fang')
+            fill_in(:number_of_players, with: 2)
+            fill_in(:dm_active, with: true)
+            fill_in(:level_range, with: 'mid')
+            click_button('Create Dungeon Master')
+
+            # save_and_open_page
+            expect(current_path).to eq('/dungeon_masters')
+            expect(page).to have_content('Fang')
         end
     end
 end
