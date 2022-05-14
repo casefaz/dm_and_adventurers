@@ -38,4 +38,43 @@ RSpec.describe 'dm index page', type: :feature do
             expect(page).to have_content(frenchie.created_at)
         end
     end
+
+    describe 'user story 8' do
+        it 'has a link that goes to player_character_index' do
+            visit '/player_characters'
+
+            click_link 'Adventurers'
+            # save_and_open_page
+            expect(current_path).to eq('/player_characters')
+        end
+    end
+    
+    describe 'user story 9' do
+        it 'has a link on every page that goes to dungeon_master_index' do
+            visit '/dungeon_masters'
+
+            click_link 'Dungeon Masters'
+            # save_and_open_page
+            expect(current_path).to eq('/dungeon_masters')
+        end
+    end
+
+    describe 'user story 11' do
+        # As a visitor
+        # When I visit the Parent Index page
+        # Then I see a link to create a new Parent record, "New Parent"
+        # When I click this link
+        # Then I am taken to '/parents/new' where I  see a form for a new parent record
+        # When I fill out the form with a new parent's attributes:
+        # And I click the button "Create Parent" to submit the form
+        # Then a `POST` request is sent to the '/parents' route,
+        # a new parent record is created,
+        # and I am redirected to the Parent Index page where I see the new Parent displayed.
+        it 'can create a new dm form' do
+            visit '/dungeon_masters'
+
+            click_link "New Dungeon Master"
+            expect(current_path).to eq('/dungeon_masters/new')
+        end
+    end
 end
