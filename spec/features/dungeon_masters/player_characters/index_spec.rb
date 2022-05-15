@@ -55,4 +55,28 @@ RSpec.describe 'dungeon master and player_character index' do
             expect(current_path).to eq('/dungeon_masters')
         end
     end
+
+    describe 'user story 16' do
+        # As a visitor
+        # When I visit the Parent's children Index Page
+        # Then I see a link to sort children in alphabetical order
+        # When I click on the link
+        # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+        it 'has a link to sort adventurers alphabetically' do
+            frenchie = DungeonMaster.create!(name: 'Frenchie', number_of_players: 2, dm_active: 'true', level_range: 'mid')
+            adventurer4 = frenchie.player_characters.create!(player_name: 'Wee John', character_name: 'Gun Powder', character_level: 2,character_age: 50, character_class: 'Barbarian', character_race: 'Dwarf', is_alive: 'true')
+            adventurer5 = frenchie.player_characters.create!(player_name: 'Oluwande', character_name: 'Jim', character_level: 3,character_age: 29, character_class: 'Rogue', character_race: 'Human', is_alive: 'true')
+
+            visit "/dungeon_masters/#{frenchie.id}/player_characters"
+
+            expect('Wee John').to appear_before('Oluwande')
+
+            click_link 'Sort Adventurers Alphabetically'
+
+            expect(current_path).to eq("/dungeon_masters/#{frenchie.id}/player_characters")
+            expect('Oluwande').to appear_before('Wee John')
+        end
+        
+
+    end
 end
