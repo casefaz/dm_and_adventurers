@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   post '/dungeon_masters/:dungeon_master_id/player_characters/', to: 'dungeon_master_player_characters#create'
 
   get '/player_characters/:player_character_id/edit', to: 'player_characters#edit'
+  patch '/player_characters/:player_character_id', to: 'player_characters#update'
 
 end
