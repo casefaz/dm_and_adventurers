@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get '/dungeon_masters/:id/edit', to: 'dungeon_masters#edit'
   patch '/dungeon_masters/:id', to: 'dungeon_masters#update'
 
+  get '/dungeon_masters/:dungeon_master_id/player_characters/new', to: 'dungeon_master_player_characters#new'
+
 end
