@@ -9,3 +9,5 @@
 <p>Is Alive?: <%= @pc.is_alive %></p>
 <p>Created at: <%= @pc.created_at %></p>
 <p>Updated at: <%= @pc.updated_at %></p>
+
+<%= link_to "Update #{@pc.player_name}", "/player_characters/#{@pc.id}/edit" %>
