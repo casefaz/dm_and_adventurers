@@ -20,6 +20,7 @@ class DungeonMastersController < ApplicationController
             # dm_active: params[:dm_active], 
             # level_range: params[:level_range]
         )
+        dm.save
         redirect_to '/dungeon_masters'
     end
 
