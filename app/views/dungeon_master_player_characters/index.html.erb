@@ -1,15 +1,18 @@
 <h1> Players DM'd By <%= @dm.name %></h1>
+<p><%= link_to "Sort Adventurers Alphabetically", "/dungeon_masters/#{@dm.id}/player_characters/?sort=Alphabetical" %></p>
 <% @pc.each do |pc| %>
+<div id="playerCharacter-<%= pc.id %>">
   <p><h4>Player Name: <%= pc.player_name %></p></h4>
+  <p>ID: <%= pc.id %> <%= link_to "Update #{pc.player_name}", "/player_characters/#{pc.id}/edit" %></p>
   <p>Character Name: <%= pc.character_name %></p>
   <p>Age: <%= pc.character_age %></p>
   <p>Level: <%= pc.character_level %></p>
   <p>Class: <%= pc.character_class %></p>
   <p>Race: <%= pc.character_race %></p>
   <p>Is Alive?: <%= pc.is_alive %></p>
-  <p>ID: <%= pc.id %></p>
   <p>Updated at: <%= pc.updated_at %></p>
   <p>Created at: <%= pc.created_at %></p>
+  </div>
 <% end %>
 
 <%= link_to "Create Adventurer", "/dungeon_masters/#{@dm.id}/player_characters/new" %>

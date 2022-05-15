@@ -6,10 +6,10 @@ RSpec.describe 'adventurer index', type: :feature do
             # As a visitor
             # When I visit '/child_table_name'
             # Then I see each Child in the system including the Child's attributes:
-            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: 'true', level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: 'true')
+            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
+            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
 
-            adventurer_2 = marcelline.player_characters.create!(player_name: 'Beemo', character_name: 'Rainbow Butterfly', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: 'true')
+            adventurer_2 = marcelline.player_characters.create!(player_name: 'Beemo', character_name: 'Rainbow Butterfly', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
 
             visit '/player_characters'
             # save_and_open_page
@@ -44,6 +44,47 @@ RSpec.describe 'adventurer index', type: :feature do
             click_link 'Dungeon Masters'
             # save_and_open_page
             expect(current_path).to eq('/dungeon_masters')
+        end
+    end
+
+    describe 'user story 15' do 
+        # As a visitor
+        # When I visit the child index
+        # Then I only see records where the boolean column is `true`
+        it 'only shows adventurers who are alive' do 
+            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
+            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+
+            adventurer_2 = marcelline.player_characters.create!(player_name: 'Beemo', character_name: 'Rainbow Butterfly', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
+
+            adventurer_3 = marcelline.player_characters.create!(player_name: 'Lemongrab', character_name: 'Unacceptable', character_level: 8,character_age: 39, character_class: 'Cleric', character_race: 'Human', is_alive: false)
+
+            visit '/player_characters'
+
+            expect(page).to have_content('Beemo')
+            expect(page).to have_content('Peppermint Butler')
+            expect(page).to_not have_content('Lemongrab')
+        end
+    end
+
+    describe 'user story 18' do 
+        # As a visitor
+        # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+        # Next to every child, I see a link to edit that child's info
+        # When I click the link
+        # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
+        it 'links to edit next to every adventurer' do
+            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
+            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer_2 = marcelline.player_characters.create!(player_name: 'Beemo', character_name: 'Rainbow Butterfly', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
+            adventurer_3 = marcelline.player_characters.create!(player_name: 'Lemongrab', character_name: 'Unacceptable', character_level: 8,character_age: 39, character_class: 'Cleric', character_race: 'Human', is_alive: false)
+
+            visit '/player_characters'
+            save_and_open_page
+            within("#playerCharacter-#{adventurer.id}") do
+                click_link "Update #{adventurer.player_name}"
+                expect(current_path).to eq("/player_characters/#{adventurer.id}/edit")
+            end
         end
     end
 end

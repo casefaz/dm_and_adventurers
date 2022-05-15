@@ -58,4 +58,31 @@ RSpec.describe 'dm index page', type: :feature do
             expect(current_path).to eq('/dungeon_masters')
         end
     end
+
+    describe 'user story 17' do
+        # As a visitor
+        # When I visit the parent index page
+        # Next to every parent, I see a link to edit that parent's info
+        # When I click the link
+        # I should be taken to that parents edit page where I can update its information just like in User Story 4
+        it 'links to edit each dm on the dungeon masters page' do
+            dm1 = DungeonMaster.create!(name: 'Lucius',number_of_players: 3, dm_active: 'true', level_range: 'high')
+        
+            dm2 = DungeonMaster.create!(name: 'Frenchie', number_of_players: 2, dm_active: 'true', level_range: 'mid')
+
+            visit '/dungeon_masters'
+            # save_and_open_page
+            within("#dungeonMaster-#{dm1.id}") do
+                click_link "Update #{dm1.name}"
+                expect(current_path).to eq("/dungeon_masters/#{dm1.id}/edit")
+            end
+
+            visit '/dungeon_masters'
+
+            within("#dungeonMaster-#{dm2.id}") do
+                click_link "Update #{dm2.name}"
+                expect(current_path).to eq("/dungeon_masters/#{dm2.id}/edit")
+            end
+        end
+    end
 end

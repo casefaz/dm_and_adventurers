@@ -55,4 +55,51 @@ RSpec.describe 'dungeon master and player_character index' do
             expect(current_path).to eq('/dungeon_masters')
         end
     end
+
+    describe 'user story 16' do
+        # As a visitor
+        # When I visit the Parent's children Index Page
+        # Then I see a link to sort children in alphabetical order
+        # When I click on the link
+        # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+        it 'has a link to sort adventurers alphabetically' do
+            frenchie = DungeonMaster.create!(name: 'Frenchie', number_of_players: 2, dm_active: 'true', level_range: 'mid')
+            adventurer1 = frenchie.player_characters.create!(player_name: 'Wee John', character_name: 'Gun Powder', character_level: 2,character_age: 50, character_class: 'Barbarian', character_race: 'Dwarf', is_alive: 'true')
+            adventurer2 = frenchie.player_characters.create!(player_name: 'Oluwande', character_name: 'Jim', character_level: 3,character_age: 29, character_class: 'Rogue', character_race: 'Human', is_alive: 'true')
+            
+            lucius = DungeonMaster.create!(name: 'Lucius', number_of_players: 3, dm_active: 'true', level_range: 'high')
+            adventurer3 = lucius.player_characters.create!(player_name: 'Ed', character_name: 'Bonnet', character_level: 4,character_age: 32, character_class: 'Warlock', character_race: 'Tiefling', is_alive: 'true')
+
+            visit "/dungeon_masters/#{frenchie.id}/player_characters/"
+
+            expect(adventurer1.player_name).to appear_before(adventurer2.player_name)
+
+            click_link 'Sort Adventurers Alphabetically'
+
+            expect(current_path).to eq("/dungeon_masters/#{frenchie.id}/player_characters/")
+            expect(adventurer2.player_name).to appear_before(adventurer1.player_name)
+            expect(page).to_not have_content(adventurer3.player_name)
+        end
+    end
+
+    describe 'user story 18' do 
+        # As a visitor
+        # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+        # Next to every child, I see a link to edit that child's info
+        # When I click the link
+        # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
+        it 'links to edit next to every adventurer' do
+            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
+            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer_2 = marcelline.player_characters.create!(player_name: 'Beemo', character_name: 'Rainbow Butterfly', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
+            adventurer_3 = marcelline.player_characters.create!(player_name: 'Lemongrab', character_name: 'Unacceptable', character_level: 8,character_age: 39, character_class: 'Cleric', character_race: 'Human', is_alive: false)
+
+            visit "/dungeon_masters/#{marcelline.id}/player_characters"
+            save_and_open_page
+            within("#playerCharacter-#{adventurer_2.id}") do
+                click_link "Update #{adventurer_2.player_name}"
+                expect(current_path).to eq("/player_characters/#{adventurer_2.id}/edit")
+            end
+        end
+    end 
 end
