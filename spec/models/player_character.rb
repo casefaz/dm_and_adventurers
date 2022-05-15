@@ -30,5 +30,16 @@ RSpec.describe PlayerCharacter, type: :model do
 
             expect(PlayerCharacter.dead_or_alive).to eq([adventurer, adventurer_2])
         end
+
+        it 'can sort alphabetically' do 
+            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
+            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+
+            adventurer_2 = marcelline.player_characters.create!(player_name: 'Beemo', character_name: 'Rainbow Butterfly', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
+
+            adventurer_3 = marcelline.player_characters.create!(player_name: 'Lemongrab', character_name: 'Unacceptable', character_level: 8,character_age: 39, character_class: 'Cleric', character_race: 'Human', is_alive: false)
+
+            expect(PlayerCharacter.alphabetical_order).to eq([adventurer_2, adventurer_3, adventurer])
+        end
     end
 end

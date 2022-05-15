@@ -7,4 +7,8 @@ class PlayerCharacter < ApplicationRecord
     def self.dead_or_alive
         where(is_alive: true)
     end
+
+    def self.alphabetical_order
+        order(:player_name)
+    end
 end
