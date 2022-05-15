@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   get '/dungeon_masters', to: 'dungeon_masters#index'
   get '/dungeon_masters/new', to: 'dungeon_masters#new'
   get '/dungeon_masters/:id', to: 'dungeon_masters#show'
@@ -11,5 +12,7 @@ Rails.application.routes.draw do
 
   post '/dungeon_masters', to: 'dungeon_masters#create'
 
-  get '/dungeon_masters/:dungeon_master_id/edit', to: 'dungeon_masters#edit'
+  get '/dungeon_masters/:id/edit', to: 'dungeon_masters#edit'
+  patch '/dungeon_masters/:id', to: 'dungeon_masters#edit'
+
 end

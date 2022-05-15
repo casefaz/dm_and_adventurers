@@ -12,9 +12,14 @@ class DungeonMastersController < ApplicationController
     def new
     end
 
+    def edit
+        # binding.pry
+        @dm = DungeonMaster.find(params[:id])
+    end
+
     def create
     #    binding.pry
-        DungeonMaster.create!(dm_params
+        dm = DungeonMaster.create(dm_params
             # name: params[:name], 
             # number_of_players: params[:number_of_players], 
             # dm_active: params[:dm_active], 
@@ -28,7 +33,4 @@ class DungeonMastersController < ApplicationController
         params.permit(:name, :number_of_players, :dm_active, :level_range)
     end
 
-    def edit
-        
-    end
 end

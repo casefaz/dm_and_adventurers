@@ -16,8 +16,11 @@ RSpec.describe 'DM edits' do
             dm = DungeonMaster.create!(name: 'Fang', number_of_players: 2, dm_active: true, level_range: 'mid')
 
             visit "/dungeon_masters/#{dm.id}"
+            # save_and_open_page
+            # binding.pry
+            click_link "Edit #{dm.name}"
 
-            click_link "Update #{dm.name}"
+            # save_and_open_page
 
             expect(current_path).to eq("/dungeon_masters/#{dm.id}/edit")
         end
@@ -25,11 +28,11 @@ RSpec.describe 'DM edits' do
         it 'can edit the dungeon master' do
             dm = DungeonMaster.create!(name: 'Fng', number_of_players: 2, dm_active: true, level_range: 'mid')
 
-            visit "/dungeon_masters/#{dm.id}/edit"
-
+            visit "/dungeon_masters/#{dm.id}"
+            save_and_open_page
             expect(page).to have_content("Fng")
 
-            click_link Edit Fng
+            click_link 'Edit Fng'
 
             fill_in 'Name', with: 'Fang'
             click_button 'Update Dungeon Master'
