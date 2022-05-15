@@ -71,12 +71,18 @@ RSpec.describe 'dm index page', type: :feature do
             dm2 = DungeonMaster.create!(name: 'Frenchie', number_of_players: 2, dm_active: 'true', level_range: 'mid')
 
             visit '/dungeon_masters'
-
+            # save_and_open_page
             within("#dungeonMaster-#{dm1.id}") do
-                click_link 'Update Dungeon Master'
+                click_link "Update #{dm1.name}"
                 expect(current_path).to eq("/dungeon_masters/#{dm1.id}/edit")
             end
 
+            visit '/dungeon_masters'
+
+            within("#dungeonMaster-#{dm2.id}") do
+                click_link "Update #{dm2.name}"
+                expect(current_path).to eq("/dungeon_masters/#{dm2.id}/edit")
+            end
         end
     end
 end
