@@ -15,4 +15,6 @@ RSpec.describe PlayerCharacter, type: :model do
         it { should allow_value(true).for(:is_alive) }
         it { should allow_value(false).for(:is_alive) }
     end
+
+    
 end
