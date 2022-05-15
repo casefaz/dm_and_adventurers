@@ -66,4 +66,25 @@ RSpec.describe 'adventurer index', type: :feature do
             expect(page).to_not have_content('Lemongrab')
         end
     end
+
+    describe 'user story 18' do 
+        # As a visitor
+        # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+        # Next to every child, I see a link to edit that child's info
+        # When I click the link
+        # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
+        it 'links to edit next to every adventurer' do
+            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
+            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer_2 = marcelline.player_characters.create!(player_name: 'Beemo', character_name: 'Rainbow Butterfly', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
+            adventurer_3 = marcelline.player_characters.create!(player_name: 'Lemongrab', character_name: 'Unacceptable', character_level: 8,character_age: 39, character_class: 'Cleric', character_race: 'Human', is_alive: false)
+
+            visit '/player_characters'
+
+            within("#playerCharacter-#{adventurer.id}") do
+                click_link "Update #{adventurer.player_name}"
+                expect(current_path).to eq("/player_characters/#{adventurer.id}/edit")
+            end
+        end
+    end
 end
