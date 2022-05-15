@@ -1,7 +1,9 @@
 <h1>Dungeon Masters</h1>
 
 <% @dm.each do |dm| %>
+<div id="dungeonMaster-<%= dm.id %>" >
   <p><strong> DM Name: </strong><%= dm.name %><strong> Created at: </strong><%= dm.created_at %></p>
+  </div>
 <% end %>
 
 <a><%= link_to 'New Dungeon Master', '/dungeon_masters/new' %></a>
