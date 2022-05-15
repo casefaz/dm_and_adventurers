@@ -1,8 +1,8 @@
 <h1>Adventurers</h1>
 <% @pc.each do |pc| %>
-<div id="playerCharacter-<%= pc.id%>" >
+<div id="playerCharacter-<%= pc.id %>" >
   <h3>Player Name:<%= pc.player_name %></h3> 
-  <p>ID: <%= pc.id %> <%= link_to "Update #{pc.player_name}", "/player_characters/#{pc.id}/edit" %> </p>
+  <p>ID: <%= pc.id %> <%= link_to "Update #{pc.player_name}", "/player_characters/#{pc.id}/edit" %></p>
   <h4>Character Information</h3>
   <p>Name: <%= pc.character_name %></p>
   <p>Level: <%= pc.character_level %></p>
