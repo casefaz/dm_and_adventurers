@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   post '/dungeon_masters', to: 'dungeon_masters#create'
 
   get '/dungeon_masters/:id/edit', to: 'dungeon_masters#edit'
-  patch '/dungeon_masters/:id', to: 'dungeon_masters#edit'
+  patch '/dungeon_masters/:id', to: 'dungeon_masters#update'
 
 end

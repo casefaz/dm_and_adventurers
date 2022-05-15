@@ -29,16 +29,26 @@ RSpec.describe 'DM edits' do
             dm = DungeonMaster.create!(name: 'Fng', number_of_players: 2, dm_active: true, level_range: 'mid')
 
             visit "/dungeon_masters/#{dm.id}"
-            save_and_open_page
+
             expect(page).to have_content("Fng")
 
-            click_link 'Edit Fng'
+            click_link('Edit Fng')
 
-            fill_in 'Name', with: 'Fang'
-            click_button 'Update Dungeon Master'
-
-            expect(current_path).to eq('/dungeon_masters')
+            fill_in('Name', with: 'Fang')
+            fill_in(:number_of_players, with: 1)
+            fill_in(:dm_active, with: true)
+            fill_in(:level_range, with: 'high')
+            click_button('Update Dungeon Master')
+            # save_and_open_page
+            expect(current_path).to eq("/dungeon_masters/#{dm.id}")
             expect(page).to have_content('Fang')
+            expect(page).to have_content('1')
+            expect(page).to have_content('true')
+            expect(page).to have_content('high')
+
+            expect(page).to_not have_content('Fng')
+            expect(page).to_not have_content('mid')
+
         end
     end
 end

@@ -12,11 +12,6 @@ class DungeonMastersController < ApplicationController
     def new
     end
 
-    def edit
-        # binding.pry
-        @dm = DungeonMaster.find(params[:id])
-    end
-
     def create
     #    binding.pry
         dm = DungeonMaster.create(dm_params
@@ -26,6 +21,19 @@ class DungeonMastersController < ApplicationController
             # level_range: params[:level_range]
         )
         redirect_to '/dungeon_masters'
+    end
+
+    def edit
+        # binding.pry
+        @dm = DungeonMaster.find(params[:id])
+    end
+
+    def update
+        # binding.pry
+        dm = DungeonMaster.find(params[:id])
+        dm.update(dm_params)
+        dm.save
+        redirect_to "/dungeon_masters/#{dm.id}"
     end
 
     def dm_params
