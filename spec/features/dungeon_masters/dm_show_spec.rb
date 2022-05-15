@@ -72,7 +72,7 @@ RSpec.describe 'dm show page', type: :feature do
             visit "/dungeon_masters/#{dm.id}"
 
             click_link "#{dm.name}'s Adventurers"
-            save_and_open_page
+            # save_and_open_page
             expect(current_path).to eq("/dungeon_masters/#{dm.id}/player_characters")
             expect(page).to have_content(adventurer1.player_name)
             expect(page).to have_content(adventurer2.player_name)

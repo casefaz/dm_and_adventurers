@@ -1,4 +1,4 @@
-<h1><%= @dm.name %></h1>
+<h1><%= @dm.name %> </h1>
 <a href="/dungeon_masters/<%= @dm.id %>/player_characters"><%= "#{@dm.name}'s Adventurers" %></a>
 <p>ID: <%= @dm.id %></p>
 <p>Player Count: <%= @dm.number_of_players %></p>
@@ -8,3 +8,4 @@
 <p>Created at: <%= @dm.created_at %></p>
 <p>Updated at: <%= @dm.updated_at %></p>
 
+<%= link_to  "Edit #{@dm.name}", "/dungeon_masters/#{@dm.id}/edit"  %>

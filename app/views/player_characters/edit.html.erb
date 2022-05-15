@@ -1,0 +1,19 @@
+<h1>Edit Adventurer</h1>
+
+<%= form_with url: "/player_characters/#{@pc.id}", method: :patch, local: true do |form| %>
+  <p><h4><%= form.label :player_name %></h4></p>
+  <p><%= form.text_field :player_name %></p>
+  <p><h4><%= form.label :character_name %></h4></p>
+  <p><%= form.text_field :character_name %></p>
+  <p><h4><%= form.label :character_age %></h4></p>
+  <p><%= form.text_field :character_age %></p>
+  <p><h4><%= form.label :character_level %></h4></p>
+  <p><%= form.text_field :character_level %></p>
+   <p><h4><%= form.label :character_class %></h4></p>
+  <p><%= form.text_field :character_class %></p>
+   <p><h4><%= form.label :character_race %></h4></p>
+  <p><%= form.text_field :character_race %></p>
+   <p><h4><%= form.label :is_alive %></h4></p>
+  <p><%= form.text_field :is_alive %></p>
+  <p><%= form.submit "Update Adventurer" %></p>
+<% end %>

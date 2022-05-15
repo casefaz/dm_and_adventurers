@@ -3,3 +3,5 @@
 <% @dm.each do |dm| %>
   <p><strong> DM Name: </strong><%= dm.name %><strong> Created at: </strong><%= dm.created_at %></p>
 <% end %>
+
+<a><%= link_to 'New Dungeon Master', '/dungeon_masters/new' %></a>

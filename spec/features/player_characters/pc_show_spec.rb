@@ -37,4 +37,14 @@ RSpec.describe 'adventurer show', type: :feature do
             expect(current_path).to eq('/player_characters')
         end
     end
+
+    describe 'user story 9' do
+        it 'has a link on every page that goes to dungeon_master_index' do
+            visit '/dungeon_masters'
+
+            click_link 'Dungeon Masters'
+            # save_and_open_page
+            expect(current_path).to eq('/dungeon_masters')
+        end
+    end
 end

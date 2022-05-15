@@ -16,3 +16,5 @@ lucius = DungeonMaster.create!(name: 'Lucius', number_of_players: 3, dm_active: 
 frenchie = DungeonMaster.create!(name: 'Frenchie', number_of_players: 2, dm_active: 'true', level_range: 'mid')
             adventurer4 = frenchie.player_characters.create!(player_name: 'Wee John', character_name: 'Gun Powder', character_level: 2,character_age: 50, character_class: 'Barbarian', character_race: 'Dwarf', is_alive: 'true')
             adventurer5 = frenchie.player_characters.create!(player_name: 'Oluwande', character_name: 'Jim', character_level: 3,character_age: 29, character_class: 'Rogue', character_race: 'Human', is_alive: 'true')
+fang = DungeonMaster.create!(name: 'Fng', number_of_players: 2, dm_active: true, level_range: 'mid')
+            adventurer6 = fang.player_characters.create!(player_name: 'Ivan', character_name: 'Bobo', character_level: 5, character_age: 55, character_class: 'Fighter', character_race: 'Dwarf', is_alive: true)
