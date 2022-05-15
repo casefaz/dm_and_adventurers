@@ -1,7 +1,11 @@
 class DungeonMasterPlayerCharactersController < ApplicationController
     def index
         @dm = DungeonMaster.find(params[:dungeon_master_id])
-        @pc = @dm.player_characters
+        if params[:sort]
+            @pc = @dm.player_characters.alphabetical_order
+        else
+            @pc = @dm.player_characters
+        end
         # binding.pry
     end
 

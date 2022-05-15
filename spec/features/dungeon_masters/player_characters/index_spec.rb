@@ -67,14 +67,14 @@ RSpec.describe 'dungeon master and player_character index' do
             adventurer1 = frenchie.player_characters.create!(player_name: 'Wee John', character_name: 'Gun Powder', character_level: 2,character_age: 50, character_class: 'Barbarian', character_race: 'Dwarf', is_alive: 'true')
             adventurer2 = frenchie.player_characters.create!(player_name: 'Oluwande', character_name: 'Jim', character_level: 3,character_age: 29, character_class: 'Rogue', character_race: 'Human', is_alive: 'true')
 
-            visit "/dungeon_masters/#{frenchie.id}/player_characters"
+            visit "/dungeon_masters/#{frenchie.id}/player_characters/"
 
-            expect(adventurer1.name).to appear_before(adventurer2.name)
+            expect(adventurer1.player_name).to appear_before(adventurer2.player_name)
 
             click_link 'Sort Adventurers Alphabetically'
 
-            expect(current_path).to eq("/dungeon_masters/#{frenchie.id}/player_characters")
-            expect(adventurer2.name).to appear_before(adventurer1.name)
+            expect(current_path).to eq("/dungeon_masters/#{frenchie.id}/player_characters/")
+            expect(adventurer2.player_name).to appear_before(adventurer1.player_name)
         end
     end
 end
