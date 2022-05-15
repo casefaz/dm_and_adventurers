@@ -1,6 +1,6 @@
 class PlayerCharactersController < ApplicationController
     def index
-        @pc = PlayerCharacter.all
+        @pc = PlayerCharacter.dead_or_alive
     end
 
     def show
