@@ -1,6 +1,6 @@
 <h1>Edit Dungeon Master</h1>
 
-<%= form_with url: "/dungeon_masters/#{@dm.id}", method: :patch, local: true do |form| %>
+<%= form_with url: "/dungeon_masters/#{@dm_id}", method: :patch, local: true do |form| %>
   <p><h4><%= form.label :name %></h4></p>
   <p><%= form.text_field :name %></p>
   <p><h4><%= form.label 'Number of Players' %></h4></p>

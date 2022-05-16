@@ -1,6 +1,34 @@
 require 'rails_helper'
 
-RSpec.describe 'DM Creation' do
+RSpec.describe 'DM Creation', type: :feature do
+    describe 'user story 8' do
+        it 'has a link that goes to player_character index' do
+            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
+            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+
+            visit '/player_characters'
+            expect(page).to have_content(adventurer.player_name)
+
+            click_link 'Adventurers'
+            # save_and_open_page
+            expect(current_path).to eq('/player_characters')
+        end
+    end
+
+    describe 'user story 9' do
+        it 'has a link on every page that goes to dungeon_master_index' do
+            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
+            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+
+            visit '/dungeon_masters'
+            expect(page).to have_content(marcelline.name)
+
+            click_link 'Dungeon Masters'
+            # save_and_open_page
+            expect(current_path).to eq('/dungeon_masters')
+        end
+    end
+    
     describe 'user story 11' do
         # As a visitor
         # When I visit the Parent Index page
@@ -27,6 +55,7 @@ RSpec.describe 'DM Creation' do
             fill_in(:number_of_players, with: 2)
             fill_in(:dm_active, with: true)
             fill_in(:level_range, with: 'mid')
+            
             click_button('Create Dungeon Master')
 
             # save_and_open_page
