@@ -8,13 +8,15 @@ class PlayerCharactersController < ApplicationController
     end
 
     def edit
-        @pc = PlayerCharacter.find(params[:player_character_id])
+        # @pc = PlayerCharacter.find(params[:player_character_id])
+        @pc_id = params[:player_character_id]
     end
 
     def update
+        # binding.pry
         pc = PlayerCharacter.find(params[:player_character_id])
         pc.update(pc_params)
-        pc.save
+        # pc.save
         redirect_to "/player_characters/#{pc.id}"
     end
 

@@ -66,7 +66,7 @@ RSpec.describe 'DM edits', type: :feature do
 
             fill_in('Name', with: 'Fang')
             fill_in(:number_of_players, with: 1)
-            fill_in(:dm_active, with: true)
+            select('true', from: :dm_active)
             fill_in(:level_range, with: 'high')
 
             click_button('Update Dungeon Master')

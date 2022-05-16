@@ -9,11 +9,11 @@
   <p><%= form.text_field :character_age %></p>
   <p><h4><%= form.label :character_level %></h4></p>
   <p><%= form.text_field :character_level %></p>
-   <p><h4><%= form.label :character_class %></h4></p>
+  <p><h4><%= form.label :character_class %></h4></p>
   <p><%= form.text_field :character_class %></p>
-   <p><h4><%= form.label :character_race %></h4></p>
+  <p><h4><%= form.label :character_race %></h4></p>
   <p><%= form.text_field :character_race %></p>
-   <p><h4><%= form.label :is_alive %></h4></p>
-  <p><%= form.text_field :is_alive %></p>
+  <p><h4><%= form.label :is_alive %>
+  <%= form.select :is_alive, [true, false] %></h4></p>
   <p><%= form.submit "Create Adventurer" %></p>
 <% end %>

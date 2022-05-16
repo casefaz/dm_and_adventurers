@@ -67,7 +67,7 @@ RSpec.describe 'edit player character', type: :feature do
             fill_in(:character_level, with: 2)
             fill_in(:character_class, with: 'Barbarian')
             fill_in(:character_race, with: 'Dwarf')
-            fill_in(:is_alive, with: false)
+            select('false', from: 'Is alive')
             click_button('Update Adventurer')
             # save_and_open_page
             expect(current_path).to eq("/player_characters/#{adventurer1.id}")

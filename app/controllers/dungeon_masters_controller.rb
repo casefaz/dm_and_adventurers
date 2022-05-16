@@ -38,6 +38,14 @@ class DungeonMastersController < ApplicationController
         redirect_to "/dungeon_masters/#{dm.id}"
     end
 
+    def destroy
+        dm = DungeonMaster.find(params[:id])
+        # binding.pry
+        dm.player_characters.destroy_all
+        dm.destroy
+        redirect_to '/dungeon_masters'
+    end
+
     private
     
         def dm_params

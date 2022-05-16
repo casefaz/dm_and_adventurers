@@ -66,13 +66,15 @@ RSpec.describe 'new dungeon master player character', type: :feature do
             fill_in(:character_level, with: 1)
             fill_in(:character_class, with: "Rogue")
             fill_in(:character_race, with: "Changeling")
-            fill_in(:is_alive, with: true)
+            select('true', from: :is_alive)
             click_button('Create Adventurer')
             # save_and_open_page
             expect(current_path).to eq("/dungeon_masters/#{dm.id}/player_characters")
             expect(page).to have_content('Buttons')
             expect(page).to have_content('karl')
             expect(page).to have_content('Changeling')
+            expect(page).to have_content('true')
+
         end
     end
 end

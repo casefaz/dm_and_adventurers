@@ -1,5 +1,5 @@
 <h1><%= @dm.name %> </h1>
-<a href="/dungeon_masters/<%= @dm.id %>/player_characters"><%= "#{@dm.name}'s Adventurers" %></a>
+<%= link_to "#{@dm.name}'s Adventurers", "/dungeon_masters/#{@dm.id}/player_characters" %>
 <p>ID: <%= @dm.id %></p>
 <p>Player Count: <%= @dm.number_of_players %></p>
 <p>Still Active?: <%= @dm.dm_active %></p>
@@ -8,4 +8,5 @@
 <p>Created at: <%= @dm.created_at %></p>
 <p>Updated at: <%= @dm.updated_at %></p>
 
-<%= link_to  "Edit #{@dm.name}", "/dungeon_masters/#{@dm.id}/edit"  %>
+<p><%= link_to  "Edit #{@dm.name}", "/dungeon_masters/#{@dm.id}/edit"  %></p>
+<p><%= link_to  "Delete #{@dm.name}", "/dungeon_masters/#{@dm.id}", method: :delete  %></p>
