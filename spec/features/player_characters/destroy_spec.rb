@@ -27,7 +27,7 @@ RSpec.describe 'destroy children', type: :feature do
             visit "/player_characters/#{adventurer3.id}"
             expect(page).to have_content(adventurer3.player_name)
             expect(page).to_not have_content(adventurer.player_name)
-            save_and_open_page
+            # save_and_open_page
             click_link "Delete #{adventurer3.player_name}"
             expect(current_path).to eq("/player_characters")
             expect(page).to have_content(adventurer1.player_name)
