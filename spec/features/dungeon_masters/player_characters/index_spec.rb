@@ -124,7 +124,7 @@ RSpec.describe 'dungeon master and player_character index', type: :feature do
             adventurer3 = lucius.player_characters.create!(player_name: 'Izzy', character_name: 'Hands', character_level: 3,character_age: 25, character_class: 'Bard', character_race: 'Half-Elf', is_alive: 'false')
 
             visit "/dungeon_masters/#{lucius.id}/player_characters"
-            save_and_open_page
+            # save_and_open_page
             fill_in(:threshold, with: 5)
             click_button("Submit Search")
             expect(page).to have_content("Ed")

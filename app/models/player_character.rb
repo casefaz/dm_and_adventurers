@@ -11,4 +11,8 @@ class PlayerCharacter < ApplicationRecord
     def self.alphabetical_order
         order(:player_name)
     end
+
+    def self.level_threshold(threshold)
+        where("character_level > ?", threshold)
+    end
 end
