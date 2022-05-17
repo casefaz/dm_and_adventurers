@@ -63,7 +63,7 @@ RSpec.describe 'DM deletion', type: :feature do
             expect(page).to have_content('Marcelline')
             expect(page).to have_content('Lucius')
             expect(page).to have_content('Frenchie')
-            save_and_open_page
+            # save_and_open_page
             within("#dungeonMaster-#{dm1.id}") do
                 click_link "Delete #{dm1.name}"
                 expect(current_path).to eq("/dungeon_masters")
@@ -71,6 +71,8 @@ RSpec.describe 'DM deletion', type: :feature do
 
             visit '/dungeon_masters'
             expect(page).to_not have_content("Amethyst")
+            expect(page).to have_content("Marcelline")
+            expect(page).to have_content("Frenchie")
         end
     end
 end
