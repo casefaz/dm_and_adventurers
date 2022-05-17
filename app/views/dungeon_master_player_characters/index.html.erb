@@ -1,8 +1,11 @@
 <h1> Players DM'd By <%= @dm.name %></h1>
+
 <p><%= link_to "Sort Adventurers Alphabetically", "/dungeon_masters/#{@dm.id}/player_characters/?sort=Alphabetical" %></p>
+
 <%= form_with url: "/dungeon_masters/#{@dm.id}/player_characters/?sort=threshold", method: :get, local: true do |form|%>
-  <p><%= form.label "Only return characters with levels higher than level"%> <%= form.text_field :level_threshold %> <%= form.submit "Submit Search" %></p>
+  <p><%= form.label "Only return characters with levels higher than level"%> <%= form.text_field :threshold %> <%= form.submit "Submit Search" %></p>
 <% end %>
+
 <% @pc.each do |pc| %>
 <div id="playerCharacter-<%= pc.id %>">
   <p><h4>Player Name: <%= pc.player_name %></p></h4>

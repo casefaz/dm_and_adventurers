@@ -125,7 +125,7 @@ RSpec.describe 'dungeon master and player_character index', type: :feature do
 
             visit "/dungeon_masters/#{lucius.id}/player_characters"
             save_and_open_page
-            fill_in(:level_threshold, with: 5)
+            fill_in(:threshold, with: 5)
             click_button("Submit Search")
             expect(page).to have_content("Ed")
             expect(page).to have_content("Stede")
