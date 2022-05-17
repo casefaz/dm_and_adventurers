@@ -6,6 +6,7 @@
   <strong> DM Name: </strong><%= dm.name %>
   <strong> Created at: </strong><%= dm.created_at %>
   <%= link_to "Update #{dm.name}", "/dungeon_masters/#{dm.id}/edit" %>
+  <%= link_to "Delete #{dm.name}", "/dungeon_masters/#{dm.id}", method: :delete %>
 </p>
 </div>
 <% end %>
