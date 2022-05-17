@@ -21,4 +21,8 @@ Rails.application.routes.draw do
   get '/player_characters/:player_character_id/edit', to: 'player_characters#edit'
   patch '/player_characters/:player_character_id', to: 'player_characters#update'
 
+  delete '/dungeon_masters/:id', to: 'dungeon_masters#destroy'
+
+  delete '/player_characters/:id', to: 'player_characters#destroy'
+
 end

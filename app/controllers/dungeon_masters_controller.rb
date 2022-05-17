@@ -20,26 +20,37 @@ class DungeonMastersController < ApplicationController
             # dm_active: params[:dm_active], 
             # level_range: params[:level_range]
         )
-        dm.save
         redirect_to '/dungeon_masters'
     end
 
     def edit
         # binding.pry
-        @dm = DungeonMaster.find(params[:id])
+        # @dm = DungeonMaster.find(params[:id])
+        @dm_id = params[:id]
     end
 
     def update
         # binding.pry
         dm = DungeonMaster.find(params[:id])
-        dm.update(dm_params)
-        dm.save
+        # binding.pry
+        dm.update!(dm_params)
+        # dm.save
         redirect_to "/dungeon_masters/#{dm.id}"
     end
 
-    def dm_params
+    def destroy
+        dm = DungeonMaster.find(params[:id])
         # binding.pry
-        params.permit(:name, :number_of_players, :dm_active, :level_range)
+        dm.player_characters.destroy_all
+        dm.destroy
+        redirect_to '/dungeon_masters'
     end
+
+    private
+    
+        def dm_params
+            # binding.pry
+            params.permit(:name, :number_of_players, :dm_active, :level_range)
+        end
 
 end
