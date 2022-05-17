@@ -39,6 +39,7 @@ RSpec.describe 'adventurer show', type: :feature do
             click_link 'Adventurers'
             # save_and_open_page
             expect(current_path).to eq('/player_characters')
+            expect(page).to have_content('Peppermint Butler')
         end
     end
 
@@ -53,6 +54,7 @@ RSpec.describe 'adventurer show', type: :feature do
             click_link 'Dungeon Masters'
             # save_and_open_page
             expect(current_path).to eq('/dungeon_masters')
+            expect(page).to have_content('Marcelline')
         end
     end
 end

@@ -18,7 +18,6 @@ RSpec.describe 'destroy children', type: :feature do
             adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
 
             visit '/player_characters'
-            # save_and_open_page
             expect(page).to have_content(adventurer1.player_name)
             expect(page).to have_content(adventurer3.player_name)
             expect(page).to have_content(adventurer.player_name)

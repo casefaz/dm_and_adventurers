@@ -88,10 +88,20 @@ RSpec.describe 'adventurer index', type: :feature do
             adventurer_3 = marcelline.player_characters.create!(player_name: 'Lemongrab', character_name: 'Unacceptable', character_level: 8,character_age: 39, character_class: 'Cleric', character_race: 'Human', is_alive: false)
 
             visit '/player_characters'
+            expect(page).to have_content(adventurer.player_name)
+            expect(page).to have_content("Update #{adventurer.player_name}")
+
             # save_and_open_page
             within("#playerCharacter-#{adventurer.id}") do
                 click_link "Update #{adventurer.player_name}"
                 expect(current_path).to eq("/player_characters/#{adventurer.id}/edit")
+            end
+
+            visit '/player_characters'
+
+            within("#playerCharacter-#{adventurer_2.id}") do
+                click_link "Update #{adventurer_2.player_name}"
+                expect(current_path).to eq("/player_characters/#{adventurer_2.id}/edit")
             end
         end
     end

@@ -79,7 +79,6 @@ RSpec.describe 'dungeon master and player_character index', type: :feature do
             adventurer3 = lucius.player_characters.create!(player_name: 'Ed', character_name: 'Bonnet', character_level: 4,character_age: 32, character_class: 'Warlock', character_race: 'Tiefling', is_alive: 'true')
 
             visit "/dungeon_masters/#{frenchie.id}/player_characters/"
-
             expect(adventurer1.player_name).to appear_before(adventurer2.player_name)
 
             click_link 'Sort Adventurers Alphabetically'
@@ -103,6 +102,7 @@ RSpec.describe 'dungeon master and player_character index', type: :feature do
             adventurer_3 = marcelline.player_characters.create!(player_name: 'Lemongrab', character_name: 'Unacceptable', character_level: 8,character_age: 39, character_class: 'Cleric', character_race: 'Human', is_alive: false)
 
             visit "/dungeon_masters/#{marcelline.id}/player_characters"
+            expect(page).to have_content('Rainbow Butterfly')
             # save_and_open_page
             within("#playerCharacter-#{adventurer_2.id}") do
                 click_link "Update #{adventurer_2.player_name}"
@@ -124,6 +124,7 @@ RSpec.describe 'dungeon master and player_character index', type: :feature do
             adventurer3 = lucius.player_characters.create!(player_name: 'Izzy', character_name: 'Hands', character_level: 3,character_age: 25, character_class: 'Bard', character_race: 'Half-Elf', is_alive: 'false')
 
             visit "/dungeon_masters/#{lucius.id}/player_characters"
+            expect(page).to have_content('Izzy')
             # save_and_open_page
             fill_in(:threshold, with: 5)
             click_button("Submit Search")

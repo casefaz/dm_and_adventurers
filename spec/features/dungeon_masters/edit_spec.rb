@@ -42,26 +42,26 @@ RSpec.describe 'DM edits', type: :feature do
         # and I am redirected to the Parent's Show page where I see the parent's updated info
         it 'links to the edit page' do
             dm = DungeonMaster.create!(name: 'Fang', number_of_players: 2, dm_active: true, level_range: 'mid')
+            lucius = DungeonMaster.create!(name: 'Lucius', number_of_players: 3, dm_active: 'true', level_range: 'high')
 
             visit "/dungeon_masters/#{dm.id}"
+            expect(page).to have_content('Fang')
+            expect(page).to_not have_content('Lucius')
             # save_and_open_page
             # binding.pry
             click_link "Edit #{dm.name}"
-
             # save_and_open_page
-
             expect(current_path).to eq("/dungeon_masters/#{dm.id}/edit")
+            expect(page).to have_content('Edit Dungeon Master')
         end
 
         it 'can edit the dungeon master' do
             dm = DungeonMaster.create!(name: 'Fng', number_of_players: 2, dm_active: true, level_range: 'mid')
 
             visit "/dungeon_masters/#{dm.id}"
-
             expect(page).to have_content("Fng")
 
             click_link('Edit Fng')
-
             expect(current_path).to eq("/dungeon_masters/#{dm.id}/edit")
 
             fill_in('Name', with: 'Fang')

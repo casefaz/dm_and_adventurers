@@ -1,5 +1,7 @@
 <h1><%= @dm.name %> </h1>
+
 <%= link_to "#{@dm.name}'s Adventurers", "/dungeon_masters/#{@dm.id}/player_characters" %>
+
 <p>ID: <%= @dm.id %></p>
 <p>Player Count: <%= @dm.number_of_players %></p>
 <p>Still Active?: <%= @dm.dm_active %></p>

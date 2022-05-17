@@ -27,15 +27,19 @@ RSpec.describe 'dm index page', type: :feature do
         # I see that records are ordered by most recently created first
         # And next to each of the records I see when it was created
         it 'can order the records that appear on the parent index' do
-            lucius = DungeonMaster.create!(name: 'Lucius',number_of_players: 3, dm_active: 'true', level_range: 'high')
+            lucius = DungeonMaster.create!(name: 'Lucius',number_of_players: 3, dm_active: true, level_range: 'high')
         
-            frenchie = DungeonMaster.create!(name: 'Frenchie', number_of_players: 2, dm_active: 'true', level_range: 'mid')
+            frenchie = DungeonMaster.create!(name: 'Frenchie', number_of_players: 2, dm_active: true, level_range: 'mid')
+
+            lumpy_space_princess = DungeonMaster.create!(name: 'LSP', number_of_players: 1, dm_active: false, level_range: 'low')
 
             visit "/dungeon_masters"
             # save_and_open_page
             expect('Frenchie').to appear_before('Lucius')
+            expect('LSP').to appear_before('Frenchie')
             expect(page).to have_content(lucius.created_at)
             expect(page).to have_content(frenchie.created_at)
+            expect(page).to have_content(lumpy_space_princess.created_at)
         end
     end
 

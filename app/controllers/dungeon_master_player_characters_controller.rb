@@ -8,7 +8,6 @@ class DungeonMasterPlayerCharactersController < ApplicationController
         else
             @pc = @dm.player_characters
         end
-        # binding.pry
     end
 
     def new

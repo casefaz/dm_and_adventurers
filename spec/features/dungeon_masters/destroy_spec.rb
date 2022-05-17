@@ -73,6 +73,8 @@ RSpec.describe 'DM deletion', type: :feature do
             expect(page).to_not have_content("Amethyst")
             expect(page).to have_content("Marcelline")
             expect(page).to have_content("Frenchie")
+            expect(page).to have_content("Lucius")
+
         end
     end
 end

@@ -45,7 +45,6 @@ RSpec.describe 'new dungeon master player character', type: :feature do
             adventurer1 = dm.player_characters.create!(player_name: 'Ivan', character_name: 'Gun Powder', character_level: 2,character_age: 50, character_class: 'Barbarian', character_race: 'Dwarf', is_alive: 'true') 
 
             visit "dungeon_masters/#{dm.id}/player_characters"
-
             expect(page).to have_content('Ivan')
 
             click_link('Create Adventurer')
@@ -59,6 +58,7 @@ RSpec.describe 'new dungeon master player character', type: :feature do
             adventurer1 = dm.player_characters.create!(player_name: 'Ivan', character_name: 'Gun Powder', character_level: 2,character_age: 50, character_class: 'Barbarian', character_race: 'Dwarf', is_alive: 'true') 
 
             visit "/dungeon_masters/#{dm.id}/player_characters/new"
+            expect(page).to have_content("New Adventurer Form")
             # save_and_open_page
             fill_in(:player_name, with: "Buttons")
             fill_in(:character_name, with: "karl")
@@ -74,7 +74,7 @@ RSpec.describe 'new dungeon master player character', type: :feature do
             expect(page).to have_content('karl')
             expect(page).to have_content('Changeling')
             expect(page).to have_content('true')
-
+            expect(page).to have_content('Ivan')
         end
     end
 end

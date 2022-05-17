@@ -33,10 +33,14 @@ RSpec.describe 'dm show page', type: :feature do
             adventurer2 = lucius.player_characters.create!(player_name: 'Stede', character_name: 'Teach', character_level: 5,character_age: 207, character_class: 'Swashbuckler', character_race: 'Genasi', is_alive: 'true')
             adventurer3 = lucius.player_characters.create!(player_name: 'Izzy', character_name: 'Hands', character_level: 3,character_age: 25, character_class: 'Bard', character_race: 'Half-Elf', is_alive: 'false')
 
+            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
+
             visit "/dungeon_masters/#{lucius.id}"
             # save_and_open_page
             expect(page).to have_content(lucius.name)
             expect(page).to have_content("Number of Players: 3")
+            expect(page).to_not have_content(marcelline.name)
+            expect(page).to_not have_content('Number of Players: 4')
         end
     end
 
@@ -77,7 +81,11 @@ RSpec.describe 'dm show page', type: :feature do
             adventurer1 = dm.player_characters.create!(player_name: 'Trixie', character_name: 'Mattel', character_level: 15, character_age: 102, character_class: 'Sorcerer', character_race: 'Firbolg', is_alive: 'true')
             adventurer2 = dm.player_characters.create!(player_name: 'Shania', character_name: 'YeeHaw', character_level: 13, character_age: 207, character_class: 'Druid', character_race: 'Elf', is_alive: 'true') 
 
+            marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
+            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+
             visit "/dungeon_masters/#{dm.id}"
+            expect(page).to have_content(dm.name)
 
             click_link "#{dm.name}'s Adventurers"
             # save_and_open_page
