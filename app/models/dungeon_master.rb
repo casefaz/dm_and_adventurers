@@ -11,4 +11,8 @@ class DungeonMaster < ApplicationRecord
     def player_count
         player_characters.count
     end
+
+    def pc_filter(params)
+        player_characters.filter_by(params)
+    end
 end

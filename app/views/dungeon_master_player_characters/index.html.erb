@@ -3,14 +3,17 @@
 <p><%= link_to "Sort Adventurers Alphabetically", "/dungeon_masters/#{@dm.id}/player_characters/?sort=alphabetical" %></p>
 
 <%= form_with url: "/dungeon_masters/#{@dm.id}/player_characters", method: :get, local: true do |form|%>
+<%= form.hidden_field :sort, value: params[:sort] %>
   <p>
-    <%= form.label :threshold, "Only return characters with levels higher than level" %> <%= form.text_field :threshold %> <%= form.submit "Submit Search" %>
+    <%= form.label :threshold, "Only return characters with levels higher than level" %> 
+    <%= form.text_field :threshold %> 
+    <%= form.submit "Submit Search" %>
   </p>
 <% end %>
 
-<% @pc.each do |pc| %>
+<% @dm.pc_filter(params).each do |pc| %>
 <div id="playerCharacter-<%= pc.id %>">
-  <h4>Player Name: <%= pc.player_name %></p>
+  <h4>Player Name: <%= pc.player_name %></h4>
   <p>
     ID: <%= pc.id %> 
     <%= link_to "Update #{pc.player_name}", "/player_characters/#{pc.id}/edit" %>

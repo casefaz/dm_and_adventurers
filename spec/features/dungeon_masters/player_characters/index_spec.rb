@@ -208,7 +208,7 @@ RSpec.describe 'dungeon master and player_character index', type: :feature do
         # I see a form that allows me to input a number value
         # When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
         # Then I am brought back to the current index page with only the records that meet that threshold shown.
-        it 'has a form to input a number' do 
+        it 'can show characters above a certain level' do 
             lucius = DungeonMaster.create!(name: 'Lucius', number_of_players: 3, dm_active: 'true', level_range: 'high')
             adventurer1 = lucius.player_characters.create!(
                 player_name: 'Ed', 
