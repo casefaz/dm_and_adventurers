@@ -4,7 +4,14 @@ RSpec.describe 'DM edits', type: :feature do
     describe 'user story 8' do
         it 'has a link that goes to player_character index' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit '/player_characters'
             expect(page).to have_content(adventurer.player_name)
@@ -18,7 +25,14 @@ RSpec.describe 'DM edits', type: :feature do
     describe 'user story 9' do
         it 'has a link on every page that goes to dungeon_master_index' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit '/dungeon_masters'
             expect(page).to have_content(marcelline.name)

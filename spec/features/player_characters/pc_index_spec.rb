@@ -7,9 +7,22 @@ RSpec.describe 'adventurer index', type: :feature do
             # When I visit '/child_table_name'
             # Then I see each Child in the system including the Child's attributes:
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
-
-            adventurer_2 = marcelline.player_characters.create!(player_name: 'Beemo', character_name: 'Rainbow Butterfly', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
+            adventurer_2 = marcelline.player_characters.create!(
+                player_name: 'Beemo', 
+                character_name: 'Rainbow Butterfly', 
+                character_level: 8,
+                character_age: 39, 
+                character_class: 'Artificer', 
+                character_race: 'Halfling', 
+                is_alive: true)
 
             visit '/player_characters'
             # save_and_open_page
@@ -30,7 +43,14 @@ RSpec.describe 'adventurer index', type: :feature do
     describe 'user story 8' do
         it 'has a link that goes to player_character index' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit '/player_characters'
             expect(page).to have_content(adventurer.player_name)
@@ -44,7 +64,14 @@ RSpec.describe 'adventurer index', type: :feature do
     describe 'user story 9' do
         it 'has a link on every page that goes to dungeon_master_index' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit '/dungeon_masters'
             expect(page).to have_content(marcelline.name)
@@ -61,11 +88,30 @@ RSpec.describe 'adventurer index', type: :feature do
         # Then I only see records where the boolean column is `true`
         it 'only shows adventurers who are alive' do 
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
-
-            adventurer_2 = marcelline.player_characters.create!(player_name: 'Beemo', character_name: 'Rainbow Butterfly', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
-
-            adventurer_3 = marcelline.player_characters.create!(player_name: 'Lemongrab', character_name: 'Unacceptable', character_level: 8,character_age: 39, character_class: 'Cleric', character_race: 'Human', is_alive: false)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
+            adventurer_2 = marcelline.player_characters.create!(
+                player_name: 'Beemo', 
+                character_name: 'Rainbow Butterfly', 
+                character_level: 8,
+                character_age: 39, 
+                character_class: 'Artificer', 
+                character_race: 'Halfling', 
+                is_alive: true)
+            adventurer_3 = marcelline.player_characters.create!(
+                player_name: 'Lemongrab', 
+                character_name: 'Unacceptable', 
+                character_level: 8,
+                character_age: 39, 
+                character_class: 'Cleric', 
+                character_race: 'Human', 
+                is_alive: false)
 
             visit '/player_characters'
 
@@ -83,9 +129,30 @@ RSpec.describe 'adventurer index', type: :feature do
         # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
         it 'links to edit next to every adventurer' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
-            adventurer_2 = marcelline.player_characters.create!(player_name: 'Beemo', character_name: 'Rainbow Butterfly', character_level: 8,character_age: 39, character_class: 'Artificer', character_race: 'Halfling', is_alive: true)
-            adventurer_3 = marcelline.player_characters.create!(player_name: 'Lemongrab', character_name: 'Unacceptable', character_level: 8,character_age: 39, character_class: 'Cleric', character_race: 'Human', is_alive: false)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
+            adventurer_2 = marcelline.player_characters.create!(
+                player_name: 'Beemo', 
+                character_name: 'Rainbow Butterfly', 
+                character_level: 8,
+                character_age: 39, 
+                character_class: 'Artificer',
+                character_race: 'Halfling', 
+                is_alive: true)
+            adventurer_3 = marcelline.player_characters.create!(
+                player_name: 'Lemongrab', 
+                character_name: 'Unacceptable', 
+                character_level: 8,
+                character_age: 39, 
+                character_class: 'Cleric', 
+                character_race: 'Human', 
+                is_alive: false)
 
             visit '/player_characters'
             expect(page).to have_content(adventurer.player_name)
