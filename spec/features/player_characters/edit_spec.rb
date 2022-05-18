@@ -4,7 +4,14 @@ RSpec.describe 'edit player character', type: :feature do
     describe 'user story 8' do
         it 'has a link that goes to player_character index' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit '/player_characters'
             expect(page).to have_content(adventurer.player_name)
@@ -18,7 +25,14 @@ RSpec.describe 'edit player character', type: :feature do
     describe 'user story 9' do
         it 'has a link on every page that goes to dungeon_master_index' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit '/dungeon_masters'
             expect(page).to have_content(marcelline.name)
@@ -41,21 +55,47 @@ RSpec.describe 'edit player character', type: :feature do
         # and I am redirected to the Child Show page where I see the Child's updated information
         it 'links to the adventurer edit page' do
             dm = DungeonMaster.create!(name: 'Fang', number_of_players: 2, dm_active: true, level_range: 'mid')
-            adventurer1 = dm.player_characters.create!(player_name: 'Ivan', character_name: 'Knives', character_level: 2,character_age: 50, character_class: 'Barbarian', character_race: 'Dwarf', is_alive: 'true') 
+            adventurer1 = dm.player_characters.create!(
+                player_name: 'Ivan', 
+                character_name: 'Knives', 
+                character_level: 2,
+                character_age: 50, 
+                character_class: 'Barbarian', 
+                character_race: 'Dwarf', 
+                is_alive: 'true')
+
+            dm2 = DungeonMaster.create!(name: 'Lumpy Space Princess', number_of_players: 1, dm_active: true, level_range: 'low')
+            adventurer2 = dm2.player_characters.create!(
+                player_name: 'Finn', 
+                character_name: 'Beemo', 
+                character_level: 1, 
+                character_age: 40, 
+                character_class: 'Cleric', 
+                character_race: 'Warforged', 
+                is_alive: 'true')
 
             visit "/player_characters/#{adventurer1.id}"
+            expect(page).to have_content(adventurer1.player_name)
+            expect(page).to_not have_content(adventurer2.player_name)
 
             click_link "Update #{adventurer1.player_name}"
-
+            # save_and_open_page
             expect(current_path).to eq("/player_characters/#{adventurer1.id}/edit")
+            expect(page).to have_content("Edit Adventurer")
         end
         
         it 'can update the adventurer' do 
             dm = DungeonMaster.create!(name: 'Fang', number_of_players: 2, dm_active: true, level_range: 'mid')
-            adventurer1 = dm.player_characters.create!(player_name: 'Ivan', character_name: 'Nifes', character_level: 2, character_age: 50, character_class: 'Barbarian', character_race: 'Dwarf', is_alive: true)
+            adventurer1 = dm.player_characters.create!(
+                player_name: 'Ivan', 
+                character_name: 'Nifes', 
+                character_level: 2, 
+                character_age: 50, 
+                character_class: 'Barbarian', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit "/player_characters/#{adventurer1.id}"
-
             expect(page).to have_content('Nifes')
 
             click_link('Update Ivan')

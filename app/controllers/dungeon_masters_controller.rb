@@ -1,11 +1,9 @@
 class DungeonMastersController < ApplicationController
     def index
-            # binding.pry
         @dm = DungeonMaster.most_recent
     end
 
     def show
-        # binding.pry
         @dm = DungeonMaster.find(params[:id])
     end
 
@@ -13,7 +11,6 @@ class DungeonMastersController < ApplicationController
     end
 
     def create
-    #    binding.pry
         dm = DungeonMaster.create(dm_params
             # name: params[:name], 
             # number_of_players: params[:number_of_players], 
@@ -24,23 +21,18 @@ class DungeonMastersController < ApplicationController
     end
 
     def edit
-        # binding.pry
         # @dm = DungeonMaster.find(params[:id])
         @dm_id = params[:id]
     end
 
     def update
-        # binding.pry
         dm = DungeonMaster.find(params[:id])
-        # binding.pry
         dm.update!(dm_params)
-        # dm.save
         redirect_to "/dungeon_masters/#{dm.id}"
     end
 
     def destroy
         dm = DungeonMaster.find(params[:id])
-        # binding.pry
         dm.player_characters.destroy_all
         dm.destroy
         redirect_to '/dungeon_masters'
@@ -49,7 +41,6 @@ class DungeonMastersController < ApplicationController
     private
     
         def dm_params
-            # binding.pry
             params.permit(:name, :number_of_players, :dm_active, :level_range)
         end
 

@@ -4,7 +4,14 @@ RSpec.describe 'new dungeon master player character', type: :feature do
     describe 'user story 8' do
         it 'has a link that goes to player_character index' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit '/player_characters'
             expect(page).to have_content(adventurer.player_name)
@@ -18,7 +25,14 @@ RSpec.describe 'new dungeon master player character', type: :feature do
     describe 'user story 9' do
         it 'has a link on every page that goes to dungeon_master_index' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit '/dungeon_masters'
             expect(page).to have_content(marcelline.name)
@@ -42,10 +56,16 @@ RSpec.describe 'new dungeon master player character', type: :feature do
         # and I am redirected to the Parent Childs Index page where I can see the new child listed
         it 'can link to a new create adventurer option' do
             dm = DungeonMaster.create!(name: 'Fang', number_of_players: 2, dm_active: true, level_range: 'mid')
-            adventurer1 = dm.player_characters.create!(player_name: 'Ivan', character_name: 'Gun Powder', character_level: 2,character_age: 50, character_class: 'Barbarian', character_race: 'Dwarf', is_alive: 'true') 
+            adventurer1 = dm.player_characters.create!(
+                player_name: 'Ivan', 
+                character_name: 'Gun Powder', 
+                character_level: 2,
+                character_age: 50, 
+                character_class: 'Barbarian', 
+                character_race: 'Dwarf', 
+                is_alive: 'true') 
 
             visit "dungeon_masters/#{dm.id}/player_characters"
-
             expect(page).to have_content('Ivan')
 
             click_link('Create Adventurer')
@@ -56,9 +76,17 @@ RSpec.describe 'new dungeon master player character', type: :feature do
 
         it 'can create a new adventurer' do 
             dm = DungeonMaster.create!(name: 'Fang', number_of_players: 2, dm_active: true, level_range: 'mid')
-            adventurer1 = dm.player_characters.create!(player_name: 'Ivan', character_name: 'Gun Powder', character_level: 2,character_age: 50, character_class: 'Barbarian', character_race: 'Dwarf', is_alive: 'true') 
+            adventurer1 = dm.player_characters.create!(
+                player_name: 'Ivan', 
+                character_name: 'Gun Powder', 
+                character_level: 2,
+                character_age: 50, 
+                character_class: 'Barbarian', 
+                character_race: 'Dwarf', 
+                is_alive: 'true') 
 
             visit "/dungeon_masters/#{dm.id}/player_characters/new"
+            expect(page).to have_content("New Adventurer Form")
             # save_and_open_page
             fill_in(:player_name, with: "Buttons")
             fill_in(:character_name, with: "karl")
@@ -74,7 +102,7 @@ RSpec.describe 'new dungeon master player character', type: :feature do
             expect(page).to have_content('karl')
             expect(page).to have_content('Changeling')
             expect(page).to have_content('true')
-
+            expect(page).to have_content('Ivan')
         end
     end
 end

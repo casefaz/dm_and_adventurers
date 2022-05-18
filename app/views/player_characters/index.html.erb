@@ -3,7 +3,7 @@
 <div id="playerCharacter-<%= pc.id %>" >
   <h3>Player Name:<%= pc.player_name %></h3> 
   <p>ID: <%= pc.id %> 
-  <%= link_to "Update #{pc.player_name}", "/player_characters/#{pc.id}/edit" %><%= pc.id %> 
+  <%= link_to "Update #{pc.player_name}", "/player_characters/#{pc.id}/edit" %> 
   <%= link_to "Delete #{pc.player_name}", "/player_characters/#{pc.id}", method: :delete %></p>
   <h4>Character Information</h3>
   <p>Name: <%= pc.character_name %></p>
@@ -14,5 +14,5 @@
   <p>Alive?: <%= pc.is_alive %></p>
   <p>Created at: <%= pc.created_at %></p>
   <p>Updated at: <%= pc.updated_at %></p>
-  </div>
+</div>
 <% end %>

@@ -3,13 +3,20 @@
 <p><%= link_to "Sort Adventurers Alphabetically", "/dungeon_masters/#{@dm.id}/player_characters/?sort=alphabetical" %></p>
 
 <%= form_with url: "/dungeon_masters/#{@dm.id}/player_characters", method: :get, local: true do |form|%>
-  <p><%= form.label :threshold, "Only return characters with levels higher than level" %> <%= form.text_field :threshold %> <%= form.submit "Submit Search" %></p>
+  <p>
+    <%= form.label :threshold, "Only return characters with levels higher than level" %> 
+    <%= form.text_field :threshold %> 
+    <%= form.submit "Submit Search" %>
+  </p>
 <% end %>
 
-<% @pc.each do |pc| %>
+<% @dm.pc_filter(params).each do |pc| %>
 <div id="playerCharacter-<%= pc.id %>">
-  <p><h4>Player Name: <%= pc.player_name %></p></h4>
-  <p>ID: <%= pc.id %> <%= link_to "Update #{pc.player_name}", "/player_characters/#{pc.id}/edit" %></p>
+  <h4>Player Name: <%= pc.player_name %></h4>
+  <p>
+    ID: <%= pc.id %> 
+    <%= link_to "Update #{pc.player_name}", "/player_characters/#{pc.id}/edit" %>
+  </p>
   <p>Character Name: <%= pc.character_name %></p>
   <p>Age: <%= pc.character_age %></p>
   <p>Level: <%= pc.character_level %></p>
@@ -18,7 +25,7 @@
   <p>Is Alive?: <%= pc.is_alive %></p>
   <p>Updated at: <%= pc.updated_at %></p>
   <p>Created at: <%= pc.created_at %></p>
-  </div>
+</div>
 <% end %>
 
 <%= link_to "Create Adventurer", "/dungeon_masters/#{@dm.id}/player_characters/new" %>

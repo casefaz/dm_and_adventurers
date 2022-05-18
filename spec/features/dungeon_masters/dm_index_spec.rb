@@ -27,22 +27,33 @@ RSpec.describe 'dm index page', type: :feature do
         # I see that records are ordered by most recently created first
         # And next to each of the records I see when it was created
         it 'can order the records that appear on the parent index' do
-            lucius = DungeonMaster.create!(name: 'Lucius',number_of_players: 3, dm_active: 'true', level_range: 'high')
+            lucius = DungeonMaster.create!(name: 'Lucius',number_of_players: 3, dm_active: true, level_range: 'high')
         
-            frenchie = DungeonMaster.create!(name: 'Frenchie', number_of_players: 2, dm_active: 'true', level_range: 'mid')
+            frenchie = DungeonMaster.create!(name: 'Frenchie', number_of_players: 2, dm_active: true, level_range: 'mid')
+
+            lumpy_space_princess = DungeonMaster.create!(name: 'LSP', number_of_players: 1, dm_active: false, level_range: 'low')
 
             visit "/dungeon_masters"
             # save_and_open_page
             expect('Frenchie').to appear_before('Lucius')
+            expect('LSP').to appear_before('Frenchie')
             expect(page).to have_content(lucius.created_at)
             expect(page).to have_content(frenchie.created_at)
+            expect(page).to have_content(lumpy_space_princess.created_at)
         end
     end
 
     describe 'user story 8' do
         it 'has a link that goes to player_character index' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit '/player_characters'
             expect(page).to have_content(adventurer.player_name)
@@ -56,7 +67,14 @@ RSpec.describe 'dm index page', type: :feature do
     describe 'user story 9' do
         it 'has a link on every page that goes to dungeon_master_index' do
             marcelline = DungeonMaster.create!(name: 'Marcelline', number_of_players: 4, dm_active: true, level_range: 'mid')
-            adventurer = marcelline.player_characters.create!(player_name: 'Peppermint Butler', character_name: 'Valor the Just', character_level: 7,character_age: 207, character_class: 'Wizard', character_race: 'Dwarf', is_alive: true)
+            adventurer = marcelline.player_characters.create!(
+                player_name: 'Peppermint Butler', 
+                character_name: 'Valor the Just', 
+                character_level: 7,
+                character_age: 207, 
+                character_class: 'Wizard', 
+                character_race: 'Dwarf', 
+                is_alive: true)
 
             visit '/dungeon_masters'
             expect(page).to have_content(marcelline.name)

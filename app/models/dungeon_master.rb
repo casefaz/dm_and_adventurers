@@ -5,11 +5,14 @@ class DungeonMaster < ApplicationRecord
     validates :dm_active, inclusion: [true, false]
 
     def self.most_recent
-        # binding.pry
         order(created_at: :desc)
     end
 
     def player_count
         player_characters.count
+    end
+
+    def pc_filter(params)
+        player_characters.filter_by(params)
     end
 end
