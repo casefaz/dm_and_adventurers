@@ -117,6 +117,9 @@ RSpec.describe DungeonMaster, type: :model do
                 is_alive: false)
 
             expect(lucius.pc_filter({sort: true})).to eq([adventurer1, adventurer3, adventurer2])
+            expect(marcelline.pc_filter({sort: true})).to eq([adventurer_3, adventurer])
+            expect(lucius.pc_filter({threshold: 7})).to eq([adventurer1, adventurer2])
+            expect(marcelline.pc_filter({threshold: 7})).to eq([adventurer_3])
         end 
     end 
 end

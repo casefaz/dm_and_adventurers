@@ -3,7 +3,6 @@
 <p><%= link_to "Sort Adventurers Alphabetically", "/dungeon_masters/#{@dm.id}/player_characters/?sort=alphabetical" %></p>
 
 <%= form_with url: "/dungeon_masters/#{@dm.id}/player_characters", method: :get, local: true do |form|%>
-<%= form.hidden_field :sort, value: params[:sort] %>
   <p>
     <%= form.label :threshold, "Only return characters with levels higher than level" %> 
     <%= form.text_field :threshold %> 
